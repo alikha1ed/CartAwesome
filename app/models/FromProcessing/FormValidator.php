@@ -4,7 +4,7 @@ namespace App\Models\FormProcessing;
 
 class FormValidator
 {
-    public static function isFieldEmpty($request)
+    public static function areAllFieldsEmpty($request)
     {
         foreach($request as $field => $value)
         {

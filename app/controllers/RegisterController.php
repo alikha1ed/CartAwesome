@@ -13,7 +13,7 @@ class RegisterController
 
     public function validate()
     {
-        if (FormValidator::isFieldEmpty($_POST))
+        if (FormValidator::areAllFieldsEmpty($_POST))
         {
             unset($_POST['password']);
             returnToViewWithError('register', 'Please, fill all the fields.', $_POST);
