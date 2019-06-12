@@ -1,57 +1,59 @@
 <?php require 'layout/header.php'; ?>
 
-	<div class="register">
+<div class="register">
 	<div class="container">
-		<h2>Register Here</h2>
-		<div class="login-form-grids">
-			<?php if (isset($form_data)): ?>
-				<form action ="/validate" method ="POST">
+	<h2>Register Here</h2>
+	<div class="login-form-grids">
+		<form action ="/validate" method ="POST">
 
-					<input type="text" name="first_name" placeholder="First Name" 
-					value=" <?= htmlspecialchars($form_data['first_name']); ?> ">
+			<label>First Name</label>
+			<input type="text" name="first_name"
+			value ="<?= isset($form_data['first_name']) ? htmlspecialchars($form_data['first_name']) : '' ?>">
 
-					<input type="text" name="second_name" placeholder="Last Name"
-					value="<?= htmlspecialchars($form_data['second_name']); ?>">
-				
-					<input type="email" name="email" placeholder="Email Address"
-					value=" <?= htmlspecialchars($form_data['email']); ?> ">
-					<br>
+			<label>Second Name</label>		
+			<input type="text" name="second_name"
+			value ="<?= isset($form_data['second_name']) ? htmlspecialchars($form_data['second_name']) : '' ?>">
 
-					<input type="text" name="phone_number" placeholder="Phone Number"
-					value=" <?= htmlspecialchars($form_data['phone_number']); ?> ">
+			<label>E-Mail</label>	
+			<input type="email" name="email"
+			value ="<?= isset($form_data['email']) ? htmlspecialchars($form_data['email']) : '' ?>">
 
-					<input type="password" name="password" placeholder="Password">
+			<label>Phone Number</label>
+			<small>(11 digits at minimum)</small>
+			<input type="text" name="phone_number"
+			value ="<?= isset($form_data['phone_number']) ? htmlspecialchars($form_data['phone_number']) : '' ?>">
 
-					<br>
-					<h3>Address</h3>
-					<br>
+			<label>Password</label><br>
+			<small>(minimum 8 characters, one small letter, one capital letter, one number)</small>
+			<input type="password" name="password">
+			<h3 id="address">Address</h3>
 
-					<input type="text" name="street_number" placeholder="Street Number"
-					value=" <?= htmlspecialchars($form_data['street_number']); ?> ">
-					<br>
+			<label>Street Number</label>
+			<input type="text" name="street_number"
+			value ="<?= isset($form_data['street_number']) ? htmlspecialchars($form_data['street_number']) : '' ?>">
 
-					<input type="text" name="street_name" placeholder="Street Name"
-					value=" <?= htmlspecialchars($form_data['street_name']); ?>" >
-					<br>
+			<label>Street Name</label>
+			<input type="text" name="street_name"
+			value ="<?= isset($form_data['street_name']) ? htmlspecialchars($form_data['street_name']) : '' ?>">
 
-					<input type="text" name="city" placeholder="City"
-					value=" <?= htmlspecialchars($form_data['city']); ?> ">
-					<br>
+			<label>City</label>
+			<input type="text" name="city" placeholder="City"
+			value ="<?= isset($form_data['city']) ? htmlspecialchars($form_data['city']) : '' ?>">
 
-					<input type="text" name="state" placeholder="State"
-					value=" <?= htmlspecialchars($form_data['state']); ?> ">
+			<label>State</label>
+			<input type="text" name="state"
+			value ="<?= isset($form_data['state']) ? htmlspecialchars($form_data['state']) : '' ?>">
 
-					<input type="submit" value="Register">
-					<br>
-				</form>	
-			<?php else: ?>
-				<?php require 'layout/registration_form.php'; ?>
-			<?php endif; ?>
-			<?php if (isset($error)): ?>
-				<h3 class="text-danger" style="text-align: center;"><?= $error ?></h3>
-			<?php endif; ?>	
-			</div>
-		</div>
+			<input type="submit" value="Register">
+			<br>
+		</form>	
+
+		<?php if (isset($error)): ?>
+			<h3 class="text-danger" style="text-align: center;"><?= $error ?></h3>
+		<?php endif; ?>	
+
 	</div>
+	</div>
+</div>
 
 <?php require 'layout/footer.php'; ?>

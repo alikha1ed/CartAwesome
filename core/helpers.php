@@ -8,7 +8,7 @@ function view($name, $data = [])
 
 function redirect($path)
 {
-    header("Location: /{$path}");
+    return header("Location: /{$path}");
 }
 
 function printInputValue($form_data, $value)
@@ -22,6 +22,9 @@ function printInputValue($form_data, $value)
 
 function returnToViewWithError($view, $errorMessage, $data = [])
 {
+    // Remove extra characters and capitalize first char of every word
+    $errorMessage = ucwords(preg_replace("/[^a-zA-Z]/", " ", $errorMessage));
+
     return view($view, [
         'error' => $errorMessage,
         'form_data' => $data
