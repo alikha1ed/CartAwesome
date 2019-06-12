@@ -59,9 +59,9 @@ class FormValidator
     {
         return (
             self::checkPasswordLength($password) &&
-            self::checkPasswordCharacters($password, "#[0-9]+#") &&
-            self::checkPasswordCharacters($password, "#[a-z]+#") &&
-            self::checkPasswordCharacters($password, "#[A-Z]+#")
+            self::checkRegularExpressionPattern($password, "#[0-9]+#") &&
+            self::checkRegularExpressionPattern($password, "#[a-z]+#") &&
+            self::checkRegularExpressionPattern($password, "#[A-Z]+#")
         );
     }
 
@@ -70,9 +70,14 @@ class FormValidator
         return (strlen($password) > 7) ? true : false;
     }
 
-    private static function checkPasswordCharacters($password, $regularExpression)  
+    private static function checkRegularExpressionPattern($password, $regularExpression)  
     {
         return (preg_match($regularExpression, $password)) ? true : false;
+    }
+
+    public static function validateStreetNumber($streetNumber)
+    {
+        return is_numeric($streetNumber);
     }
 }
 

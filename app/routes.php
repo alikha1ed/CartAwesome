@@ -4,4 +4,4 @@ $router->get('', 'HomeController@index');
 
 $router->get('register', 'RegisterController@index');
 
-$router->post('validate', 'RegisterController@validate');
+$router->post('register', 'RegisterController@validate');

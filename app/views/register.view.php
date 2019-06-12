@@ -4,7 +4,7 @@
 	<div class="container">
 	<h2>Register Here</h2>
 	<div class="login-form-grids">
-		<form action ="/validate" method ="POST">
+		<form action ="/register" method ="POST">
 
 			<label>First Name</label>
 			<input type="text" name="first_name"
@@ -37,7 +37,7 @@
 			value ="<?= isset($form_data['street_name']) ? htmlspecialchars($form_data['street_name']) : '' ?>">
 
 			<label>City</label>
-			<input type="text" name="city" placeholder="City"
+			<input type="text" name="city"
 			value ="<?= isset($form_data['city']) ? htmlspecialchars($form_data['city']) : '' ?>">
 
 			<label>State</label>
