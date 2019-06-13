@@ -2,6 +2,8 @@
 
 $router->get('', 'HomeController@index');
 
-$router->get('register', 'RegisterController@index');
+$router->get('register', 'FormController@index');
 
-$router->post('register', 'RegisterController@validate');
+$router->post('register', 'FormController@handle');
+
+$router->get('login', 'LoginController@index');

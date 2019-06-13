@@ -9,17 +9,49 @@ class MySqlRepository
         $this->pdo = $pdo;
     }
 
-    public function selectAll($table)
+    public function insert($table, $parameters)
     {
-        try
-        {
-            $statement = $this->pdo->prepare("select * from {$table}");
-            $statement->execute();
+        $sql = sprintf(
+            "INSERT INTO %s (%s) VALUES (:%s)",
+            $table,
+            implode(', ', array_keys($parameters)),
+            implode(', :', array_keys($parameters))
+        );
+        try {
+            $this->pdo->prepare($sql)->execute($parameters);
+            return 1;
+        } catch (PDOException $e) {
+            return 0;
         }
-        catch(PDOException $e)
-        {
-            die($e->getMessage());
+    }
+
+    public function selectColumns($table, $columns, $column, $value)
+    {
+        $sql = sprintf(
+            "SELECT %s FROM %s WHERE %s = %s",
+            implode(', ', $columns),
+            $table,
+            $column,
+            $value
+        );
+        try {
+            $this->pdo->prepare($sql)->execute($parameters);
+        } catch (PDOException $e) {
+            die(var_dump($e->getMessage()));
         }
-        return $statement->fetch(PDO::FETCH_CLASS);
+    }
+
+    public function getTheLastRows($table, $columns, $column, $rowsNumber)
+    {
+        $sql = sprintf(
+            "SELECT %s FROM %s ORDER BY %s LIMIT %s",
+            implode(', ', $columns),
+            $table,
+            $column,
+            $rowsNumber
+        );
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute($parameters);
+        return $statement->fetch();
     }
 }

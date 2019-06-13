@@ -7,7 +7,7 @@ class Connection
         try
         {
             return new PDO(
-                $database['connection'] . ';dbname' . $database['name'],
+                $database['connection'] . ';dbname=' . $database['name'],
                 $database['username'],
                 $database['password'],
                 $database['options']

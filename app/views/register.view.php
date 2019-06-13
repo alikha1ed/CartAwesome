@@ -36,21 +36,19 @@
 			<input type="text" name="street_name"
 			value ="<?= isset($form_data['street_name']) ? htmlspecialchars($form_data['street_name']) : '' ?>">
 
+			<label>Area</label>
+			<input type="text" name="area"
+			value ="<?= isset($form_data['area']) ? htmlspecialchars($form_data['area']) : '' ?>">
+			
 			<label>City</label>
 			<input type="text" name="city"
 			value ="<?= isset($form_data['city']) ? htmlspecialchars($form_data['city']) : '' ?>">
 
-			<label>State</label>
-			<input type="text" name="state"
-			value ="<?= isset($form_data['state']) ? htmlspecialchars($form_data['state']) : '' ?>">
-
 			<input type="submit" value="Register">
 			<br>
 		</form>	
-
-		<?php if (isset($error)): ?>
-			<h3 class="text-danger" style="text-align: center;"><?= $error ?></h3>
-		<?php endif; ?>	
+		
+		<?php require 'layout/message.php' ?>
 
 	</div>
 	</div>

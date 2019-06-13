@@ -45,34 +45,31 @@ class FormValidator
     {
         if(!strrchr($email, '@') || !strrchr($email, '.'))
             return 0;
+
         return 1;
     }
 
-    public static function validatePhoneNumber($phoneNumber)
+    public static function validatePhoneNumber($phoneNumber, $phoneLength)
     {
-        if(strlen($phoneNumber) < 11 || !is_numeric($phoneNumber))
+        if(strlen($phoneNumber) < $phoneLength || !is_numeric($phoneNumber))
             return 0;
+
         return 1;
     }
 
     public static function validatePassword($password)
     {
         return (
-            self::checkPasswordLength($password) &&
-            self::checkRegularExpressionPattern($password, "#[0-9]+#") &&
-            self::checkRegularExpressionPattern($password, "#[a-z]+#") &&
-            self::checkRegularExpressionPattern($password, "#[A-Z]+#")
+            self::checkPasswordLength($password, 8) &&
+            preg_match("#[0-9]+#", $password) &&
+            preg_match("#[a-z]+#", $password) &&
+            preg_match("#[A-Z]+#", $password)
         );
     }
 
-    private static function checkPasswordLength($password)
+    private static function checkPasswordLength($password, $passwordLength)
     {
-        return (strlen($password) > 7) ? true : false;
-    }
-
-    private static function checkRegularExpressionPattern($password, $regularExpression)  
-    {
-        return (preg_match($regularExpression, $password)) ? true : false;
+        return (strlen($password) > $passwordLength) ? true : false;
     }
 
     public static function validateStreetNumber($streetNumber)

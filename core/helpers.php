@@ -20,13 +20,18 @@ function printInputValue($form_data, $value)
     return null;
 }
 
-function returnToViewWithError($view, $errorMessage, $data = [])
+function toViewWithMessage($view, $message, $data = [])
 {
-    // Remove extra characters and capitalize first char of every word
-    $errorMessage = ucwords(preg_replace("/[^a-zA-Z]/", " ", $errorMessage));
+    // capitalize first char of every word
+    $message = ucwords(preg_replace("/[^a-zA-Z]/", " ", $message));
 
     return view($view, [
-        'error' => $errorMessage,
+        'message' => $message,
         'form_data' => $data
     ]);
+}
+
+function dd($data)
+{
+    die(var_dump($data));
 }
