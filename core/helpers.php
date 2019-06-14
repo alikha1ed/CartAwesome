@@ -22,11 +22,8 @@ function printInputValue($form_data, $value)
 
 function toViewWithMessage($view, $message, $data = [])
 {
-    // capitalize first char of every word
-    $message = ucwords(preg_replace("/[^a-zA-Z]/", " ", $message));
-
     return view($view, [
-        'message' => $message,
+        'message' => ucwords(preg_replace("/[^a-zA-Z]/", " ", $message)),
         'form_data' => $data
     ]);
 }

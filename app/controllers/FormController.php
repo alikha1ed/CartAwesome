@@ -2,8 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Controllers\ValidationController;
-
 class FormController
 {
     public function index()
@@ -17,7 +15,7 @@ class FormController
         
         if($validationController->validate())
         {
-            $registerController = RegisterController::load($_POST);
+            $registerController = RegisterController::load();
             if ($registerController->register())
                 return toViewWithMessage('login', 'account created successfully');
             else

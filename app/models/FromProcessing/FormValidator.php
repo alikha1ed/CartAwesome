@@ -60,7 +60,7 @@ class FormValidator
     public static function validatePassword($password)
     {
         return (
-            self::checkPasswordLength($password, 8) &&
+            self::checkPasswordLength($password, 7) &&
             preg_match("#[0-9]+#", $password) &&
             preg_match("#[a-z]+#", $password) &&
             preg_match("#[A-Z]+#", $password)

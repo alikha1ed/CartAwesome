@@ -51,7 +51,7 @@ class MySqlRepository
             $rowsNumber
         );
         $statement = $this->pdo->prepare($sql);
-        $statement->execute($parameters);
+        $statement->execute();
         return $statement->fetch();
     }
 }

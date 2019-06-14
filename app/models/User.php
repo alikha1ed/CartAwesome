@@ -14,16 +14,19 @@ class User
 
     public function create()
     {
-        if($this->createUserAddress())
-        {
-            return App::get('database')->insert('user', $this->prepareUser());
-        }
+        if (App::get('database')->insert('user', $this->prepareUser()))
+            return $this->createUserAddress();
+            
         return 0;
     }
 
     private function createUserAddress()
-    {    
-        if (App::get('database')->insert('user_address', $this->getUserAddress()))
+    {
+        $userAddress = $this->getUserAddress();
+        // Get the user id from the user table
+        $userAddress['user_fk'] = App::get('database')->getTheLastRows('user', ['id'], 'id', 1)['id'];
+
+        if (App::get('database')->insert('user_address', $userAddress))
             return 1;
 
         return 0;
@@ -46,16 +49,15 @@ class User
 
     private function prepareUser()
     {
-        $userData = $this->getUserData();
-
-        $userData['address_fk'] = App::get('database')->getTheLastRows('user_address', ['id'], 'id', 1)['id'];
+        $userData = $this->getUserInformation();
+        
         $userData['role_fk'] = 1;
         $userData['password'] = password_hash($userData['password'], PASSWORD_BCRYPT);
 
         return $userData;
     }
 
-    private function getUserData()
+    private function getUserInformation()
     {
         $userData = $this->request;
 

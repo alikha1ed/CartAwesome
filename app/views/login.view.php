@@ -7,9 +7,6 @@
 			<form>
 				<input type="email" placeholder="Email Address" required=" " >
 				<input type="password" placeholder="Password" required=" " >
-				<div class="forgot">
-					<a href="#">Forgot Password?</a>
-				</div>
 				<input type="submit" value="Login">
 			</form>
 			<br>
