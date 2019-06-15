@@ -18,8 +18,7 @@ class MySqlRepository
             implode(', :', array_keys($parameters))
         );
         try {
-            $this->pdo->prepare($sql)->execute($parameters);
-            return 1;
+            return $this->pdo->prepare($sql)->execute($parameters);
         } catch (PDOException $e) {
             return 0;
         }
@@ -28,14 +27,17 @@ class MySqlRepository
     public function selectColumns($table, $columns, $column, $value)
     {
         $sql = sprintf(
-            "SELECT %s FROM %s WHERE %s = %s",
+            "SELECT %s FROM %s WHERE %s = :%s",
             implode(', ', $columns),
             $table,
             $column,
-            $value
+            $column
         );
+
         try {
-            $this->pdo->prepare($sql)->execute($parameters);
+            $statement = $this->pdo->prepare($sql);
+            $statement->execute($value);
+            return $statement->fetch();
         } catch (PDOException $e) {
             die(var_dump($e->getMessage()));
         }

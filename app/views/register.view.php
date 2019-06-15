@@ -62,7 +62,7 @@
 			<button type="submit" class="btn btn-primary">Register</button>
 		</form>
 
-		<?php require 'layout/message.php' ?>
+		<?php require 'layout/errorMessage.php' ?>
 
 	</div>
 </div>

@@ -17,9 +17,9 @@ class FormController
         {
             $registerController = RegisterController::load();
             if ($registerController->register())
-                return toViewWithMessage('login', 'account created successfully');
+                return toViewWithSuccess('login', 'account created successfully');
             else
-                return toViewWithMessage('register', 'the email already exists');
+                return toViewWithError('register', 'the email already exists');
         }
     }
 }

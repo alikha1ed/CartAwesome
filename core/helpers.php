@@ -20,7 +20,15 @@ function printInputValue($form_data, $value)
     return null;
 }
 
-function toViewWithMessage($view, $message, $data = [])
+function toViewWithError($view, $error, $data = [])
+{
+    return view($view, [
+        'error' => ucwords(preg_replace("/[^a-zA-Z]/", " ", $error)),
+        'form_data' => $data
+    ]);
+}
+
+function toViewWithSuccess($view, $message, $data = [])
 {
     return view($view, [
         'message' => ucwords(preg_replace("/[^a-zA-Z]/", " ", $message)),

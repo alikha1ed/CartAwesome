@@ -26,7 +26,7 @@ class ValidationController extends Controller
         if (FormValidator::areAllFieldsEmpty($this->request))
         {
             unset($this->request['password']);
-            return toViewWithMessage('register', 'Please, fill all the fields.', $this->request);
+            return toViewWithError('register', 'Please, fill all the fields.', $this->request);
         }
     }
 
@@ -34,30 +34,30 @@ class ValidationController extends Controller
     {
         $textField = FormValidator::validateAllTextFields($this->request);
         if($textField !== 1)
-            return toViewWithMessage('register', "$textField is not valid", $this->request);      
+            return toViewWithError('register', "$textField is not valid", $this->request);      
     }
 
     private function checkEmail()
     {
         if(! FormValidator::validateEmail($this->request['email']))
-            return toViewWithMessage('register', 'email is not valid', $this->request);
+            return toViewWithError('register', 'email is not valid', $this->request);
     }
 
     private function checkPhoneNumber()
     {
         if(! FormValidator::validatePhoneNumber($this->request['phone_number'], 11))
-            return toViewWithMessage('register', 'phone number is not valid', $this->request);
+            return toViewWithError('register', 'phone number is not valid', $this->request);
     }
     
     private function checkPassword()
     {
         if(! FormValidator::validatePassword($this->request['password'], 8))
-            return toViewWithMessage('register', 'password is not valid', $this->request);
+            return toViewWithError('register', 'password is not valid', $this->request);
     }
 
     private function checkStreetNumber()
     {
         if (! FormValidator::validateStreetNumber($this->request['street_number']))
-            return toViewWithMessage('register', 'street number is not valid', $this->request);
+            return toViewWithError('register', 'street number is not valid', $this->request);
     }
 }
