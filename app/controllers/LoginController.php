@@ -11,17 +11,34 @@ class LoginController
         return view('login');
     }
 
+    private function areFieldsFilled()
+    {
+        $validate = ValidationController::load($_POST);
+
+        if ($validate->checkEmptyFields('login'))
+            return 0;
+
+        return 1;
+    }
+
+    private function arePasswordsMatched()
+    {
+        if (
+            ! is_null($this->getStoredPassword()) &&
+            password_verify($_POST['password'], $this->getStoredPassword())
+            )
+                return 1;
+        return 0;
+    }
+
     public function auth()
     {
-        $storedPassword = $this->getStoredPassword();
-
-        if (! is_null($storedPassword))
+        if ($this->areFieldsFilled() && ! $this->arePasswordsMatched())
         {
-            if (password_verify($_POST['password'], $storedPassword))
-            die("PASSED");
+            return toViewWithError('login', 'incorrect email or password');
         }
-        $data = ['email' => $_POST['email']];
-        return toViewWithError('login', 'incorrect email or password', $data);
+
+        die('success');
     }
 
     private function getStoredPassword()

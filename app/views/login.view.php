@@ -6,11 +6,12 @@
 		<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
 			<form action="/login" method="POST">
 				<label>Email Address</label>
-				<input type="email" name="email" required
-				value ="<?= isset($data['email']) ? htmlspecialchars($data['email']) : '' ?>">
+				<input type="email" name="email"
+				value ="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
 				
 				<label>Password</label>
-				<input type="password" name="password" required>
+				<input type="password" name="password"
+				value ="<?= isset($_POST['password']) ? htmlspecialchars($_POST['password']) : '' ?>">
 
 				<input type="submit" value="Login">
 			</form>
@@ -19,6 +20,7 @@
 		</div>
 
 		<?php require 'layout/errorMessage.php' ?>
+		<?php require 'layout/successMessage.php' ?>
 		
 	</div>
 </div>

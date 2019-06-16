@@ -11,7 +11,7 @@ class ValidationController extends Controller
         // Clean request data from white spaces at the edges
         $this->request = array_map('trim', $this->request);
 
-        if ($this->checkEmptyFields() || $this->checkTextFields() ||
+        if ($this->checkEmptyFields('register') || $this->checkTextFields() ||
             $this->checkEmail() || $this->checkPhoneNumber() ||
             $this->checkPassword() || $this->checkStreetNumber())
         {
@@ -21,12 +21,11 @@ class ValidationController extends Controller
         return 1;
     }
 
-    private function checkEmptyFields()
+    public function checkEmptyFields($view)
     {
         if (FormValidator::areAllFieldsEmpty($this->request))
         {
-            unset($this->request['password']);
-            return toViewWithError('register', 'Please, fill all the fields.', $this->request);
+            return toViewWithError($view, 'Please, fill all the fields.', $this->request);
         }
     }
 
