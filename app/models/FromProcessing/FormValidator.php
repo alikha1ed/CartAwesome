@@ -67,9 +67,10 @@ class FormValidator
         );
     }
 
-    private static function checkPasswordLength($password, $passwordLength)
+    private static function checkPasswordLength($password)
     {
-        return (strlen($password) > $passwordLength) ? true : false;
+        $minimumPasswordLength = 7;
+        return (strlen($password) > $minimumPasswordLength) ? true : false;
     }
 
     public static function validateStreetNumber($streetNumber)

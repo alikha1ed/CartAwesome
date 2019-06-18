@@ -37,7 +37,6 @@ class LoginController
         {
             return toViewWithError('login', 'incorrect email or password');
         }
-
         die('success');
     }
 

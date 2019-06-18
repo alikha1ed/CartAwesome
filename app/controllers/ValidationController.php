@@ -50,7 +50,7 @@ class ValidationController extends Controller
     
     private function checkPassword()
     {
-        if(! FormValidator::validatePassword($this->request['password'], 8))
+        if(! FormValidator::validatePassword($this->request['password']))
             return toViewWithError('register', 'password is not valid', $this->request);
     }
 

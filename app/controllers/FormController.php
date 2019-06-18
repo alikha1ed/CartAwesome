@@ -13,8 +13,7 @@ class FormController
     {
         $validationController = ValidationController::load($_POST);
         
-        if($validationController->validate())
-        {
+        if ($validationController->validate()) {
             $registerController = RegisterController::load();
             if ($registerController->register())
                 return toViewWithSuccess('login', 'account created successfully');
