@@ -19,8 +19,8 @@
 			<p>New Account?<a href="/register">Register Here</a></p>
 		</div>
 
-		<?php require 'layout/errorMessage.php' ?>
-		<?php require 'layout/successMessage.php' ?>
+		<?php require 'layout/messages/errorMessage.php' ?>
+		<?php require 'layout/messages/successMessage.php' ?>
 		
 	</div>
 </div>

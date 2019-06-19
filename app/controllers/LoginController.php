@@ -16,14 +16,13 @@ class LoginController
         if ($this->areFieldsFilled() && ! $this->arePasswordsMatched()) {
             return toViewWithError('login', 'incorrect email or password');
         }
+        die('success');
         return RolesController::goToUserProfile($this->getUserData()['role_fk']);
     }
     
     private function areFieldsFilled()
     {
-        $validate = ValidationController::load($_POST);
-
-        return $validate->checkEmptyFields('login') ? 0 : 1;
+        return ValidationController::checkEmptyFields('login') ? 0 : 1;
     }
 
     private function arePasswordsMatched()

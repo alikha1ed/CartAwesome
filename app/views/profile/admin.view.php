@@ -17,9 +17,8 @@
 				</div>
 		</form>
 
-		<?php require 'app/views/layout/errorMessage.php' ?>
-
-		<?php require 'app/views/layout/successMessage.php' ?>
+		<?php require 'app/views/layout/messages/errorMessage.php' ?>
+		<?php require 'app/views/layout/messages/successMessage.php' ?>
 
 	</div>
 <hr>

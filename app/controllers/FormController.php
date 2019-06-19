@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
+
 class FormController
 {
     public function index()
@@ -10,21 +12,19 @@ class FormController
     }
 
     public function handle()
-    {
-        $validationController = ValidationController::load($_POST);
-        
-        if ($validationController->validate()) {
+    {   
+        if (ValidationController::validate()) {
             return $this->createAccount();
         }
-        
+
         return 0;
     }
 
     private function createAccount()
     {
-        $registerController = RegisterController::load();
-
-        if ($registerController->register()) {
+        $user = new User($_POST);
+        
+        if ($user->create()) {
             return toViewWithSuccess('login', 'account created successfully');
         }
 
