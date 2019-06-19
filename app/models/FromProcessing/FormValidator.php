@@ -8,8 +8,9 @@ class FormValidator
     {
         foreach($request as $field => $value)
         {
-            if(empty($value))
+            if (empty($value)) { 
                 return true;
+            }
         }
         return false;
     }
@@ -22,8 +23,9 @@ class FormValidator
 
         foreach($textFields as $field => $value)
         {
-            if (! self::isTextFieldValid($value))
+            if (! self::isTextFieldValid($value)) {
                 return $field;
+            }
         }
         return 1;
     }
@@ -35,26 +37,20 @@ class FormValidator
     }
     private static function isTextFieldValid($field)
     {
-        if (preg_match('/[\'^£$%&*()}{.!@#~?><>,|=_+¬-]/', $field) || preg_match("/\\d/", $field) > 0)
-            return 0;
-
-        return 1;
+        return (
+            preg_match('/[\'^£$%&*()}{.!@#~?><>,|=_+¬-]/', $field) ||
+            preg_match("/\\d/", $field) > 0
+        ) ? 0 : 1;            
     }
 
     public static function validateEmail($email)
     {
-        if(!strrchr($email, '@') || !strrchr($email, '.'))
-            return 0;
-
-        return 1;
+        return (!strrchr($email, '@') || !strrchr($email, '.')) ? 0 : 1;
     }
 
     public static function validatePhoneNumber($phoneNumber, $phoneLength)
     {
-        if(strlen($phoneNumber) < $phoneLength || !is_numeric($phoneNumber))
-            return 0;
-
-        return 1;
+        return  (strlen($phoneNumber) < $phoneLength || !is_numeric($phoneNumber)) ? 0 : 1;
     }
 
     public static function validatePassword($password)

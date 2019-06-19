@@ -11,42 +11,36 @@ class LoginController
         return view('login');
     }
 
+    public function auth()
+    {
+        if ($this->areFieldsFilled() && ! $this->arePasswordsMatched()) {
+            return toViewWithError('login', 'incorrect email or password');
+        }
+        return RolesController::goToUserProfile($this->getUserData()['role_fk']);
+    }
+    
     private function areFieldsFilled()
     {
         $validate = ValidationController::load($_POST);
 
-        if ($validate->checkEmptyFields('login'))
-            return 0;
-
-        return 1;
+        return $validate->checkEmptyFields('login') ? 0 : 1;
     }
 
     private function arePasswordsMatched()
     {
-        if (
-            ! is_null($this->getStoredPassword()) &&
-            password_verify($_POST['password'], $this->getStoredPassword())
-            )
-                return 1;
-        return 0;
+        return (
+            ! is_null($this->getUserData()['password']) &&
+            password_verify($_POST['password'], $this->getUserData()['password'])
+        ) ? 1 : 0;
     }
 
-    public function auth()
-    {
-        if ($this->areFieldsFilled() && ! $this->arePasswordsMatched())
-        {
-            return toViewWithError('login', 'incorrect email or password');
-        }
-        die('success');
-    }
-
-    private function getStoredPassword()
+    private function getUserData()
     {
         return App::get('database')->selectColumns(
             'user',
-            ['password'],
+            ['password', 'role_fk'],
             'email',
             ['email' => $_POST['email']]
-        )[0];
+        );
     }
 }

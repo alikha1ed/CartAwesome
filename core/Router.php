@@ -36,7 +36,7 @@ class Router
     public function direct($uri, $requestType)
     {
         // Checks if the uri is registered in the GET or POST URIs
-        if(array_key_exists($uri, $this->routes[$requestType]))
+        if (array_key_exists($uri, $this->routes[$requestType]))
         {
             // Example: callAction('PagesController', 'index')
             return $this->callAction(...explode('@', $this->routes[$requestType][$uri]));
@@ -49,9 +49,11 @@ class Router
     {
         $controller = "App\Controllers\\{$controller}";
         $controller = new $controller;
+        
         if (! method_exists($controller, $action)) {
             throw new Exception("{$controller} has no {$action} action");
         }
+
         return $controller->$action();
     }
 }

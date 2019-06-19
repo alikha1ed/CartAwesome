@@ -13,9 +13,10 @@ class App
 
     public static function get($key)
     {
-        if(! array_key_exists($key, static::$registry))
+        if (! array_key_exists($key, static::$registry)) {
             throw new Exception("The {$key} key is not found in the container.");
-            
+        }
+        
         return static::$registry[$key];
     }
 }

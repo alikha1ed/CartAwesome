@@ -14,11 +14,20 @@ class FormController
         $validationController = ValidationController::load($_POST);
         
         if ($validationController->validate()) {
-            $registerController = RegisterController::load();
-            if ($registerController->register())
-                return toViewWithSuccess('login', 'account created successfully');
-            else
-                return toViewWithError('register', 'the email already exists');
+            return $this->createAccount();
         }
+        
+        return 0;
+    }
+
+    private function createAccount()
+    {
+        $registerController = RegisterController::load();
+
+        if ($registerController->register()) {
+            return toViewWithSuccess('login', 'account created successfully');
+        }
+
+        return toViewWithError('register', 'the email already exists');
     }
 }

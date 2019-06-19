@@ -14,9 +14,10 @@ class User
 
     public function create()
     {
-        if (App::get('database')->insert('user', $this->prepareUser()))
+        if (App::get('database')->insert('user', $this->prepareUser())) {
             return $this->createUserAddress();
-            
+        }
+
         return 0;
     }
 
@@ -26,10 +27,7 @@ class User
         // Get the user id from the user table
         $userAddress['user_fk'] = App::get('database')->getTheLastRows('user', ['id'], 'id', 1)['id'];
 
-        if (App::get('database')->insert('user_address', $userAddress))
-            return 1;
-
-        return 0;
+        return (App::get('database')->insert('user_address', $userAddress));
     }
 
     private function getUserAddress()
