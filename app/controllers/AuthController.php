@@ -4,22 +4,29 @@ namespace App\Controllers;
 
 use App\Core\App;
 
-class LoginController
+class AuthController
 {
     public function index()
     {
         return view('login');
     }
 
-    public function auth()
+    public function login()
     {
         if ($this->areFieldsFilled() && ! $this->arePasswordsMatched()) {
             return toViewWithError('login', 'incorrect email or password');
         }
-        die('success');
+        session_start();
+        $_SESSION['user'] = $_POST;
         return RolesController::goToUserProfile($this->getUserData()['role_fk']);
     }
     
+    public function logout()
+    {
+        session_start();
+        unset($_SESSION['user']);
+        return view('index');
+    }
     private function areFieldsFilled()
     {
         return ValidationController::checkEmptyFields('login') ? 0 : 1;
