@@ -1,4 +1,10 @@
-<?php require 'layout/header.php'; ?>
+<?php 
+
+killSession();
+
+require 'layout/header.php';
+
+?>
 
 <div class="login">
 	<div class="container">

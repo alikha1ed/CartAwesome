@@ -29,3 +29,11 @@ function dd($data)
 {
     die(var_dump($data));
 }
+
+function killSession()
+{
+    session_start();
+    session_destroy();
+    
+    return;
+}

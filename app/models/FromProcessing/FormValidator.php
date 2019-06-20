@@ -45,7 +45,7 @@ class FormValidator
 
     public static function validateEmail($email)
     {
-        return (!strrchr($email, '@') || !strrchr($email, '.')) ? 0 : 1;
+        return (!filter_var($email, FILTER_VALIDATE_EMAIL)) ? 0 : 1;
     }
 
     public static function validatePhoneNumber($phoneNumber, $phoneLength)

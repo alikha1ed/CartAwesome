@@ -1,4 +1,8 @@
-<?php require 'layout/header.php'; ?>
+<?php 
+
+killSession();
+
+require 'layout/header.php'; ?>
 
 <div class="register">
 	<div class="container">

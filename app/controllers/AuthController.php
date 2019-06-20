@@ -16,15 +16,18 @@ class AuthController
         if ($this->areFieldsFilled() && ! $this->arePasswordsMatched()) {
             return toViewWithError('login', 'incorrect email or password');
         }
+
         session_start();
         $_SESSION['user'] = $_POST;
+
         return RolesController::goToUserProfile($this->getUserData()['role_fk']);
     }
     
     public function logout()
     {
         session_start();
-        unset($_SESSION['user']);
+        session_destroy();
+        
         return view('index');
     }
     private function areFieldsFilled()
