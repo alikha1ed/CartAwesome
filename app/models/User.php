@@ -48,8 +48,7 @@ class User
     private function prepareUser()
     {
         $userData = $this->getUserInformation();
-        
-        $userData['role_fk'] = 1;
+                
         $userData['password'] = password_hash($userData['password'], PASSWORD_BCRYPT);
 
         return $userData;

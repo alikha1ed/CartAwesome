@@ -10,8 +10,7 @@
 					<hr>
                     <br><h3>Add Category</h3><br>
 					<label>Category Name</label>
-					<input type="text" class="form-control" name="name" required
-                    value ="<?= isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '' ?>">
+					<input type="text" class="form-control" name="name"                     value ="<?= isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '' ?>">
                     <br>
         			<button type="submit" class="btn btn-primary">Add</button>            
 				</div>

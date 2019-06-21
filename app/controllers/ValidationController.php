@@ -11,7 +11,7 @@ class ValidationController
         // Clean request data from white spaces at the edges
         $_POST = array_map('trim', $_POST);
 
-        return (self::checkEmptyFields('register') || self::checkTextFields() ||
+        return (self::checkEmptyFields('register') || self::checkTextFields('register') ||
             self::checkEmail() || self::checkPhoneNumber() ||
             self::checkPassword() || self::checkStreetNumber()) ? 0 : 1;
     }
@@ -23,12 +23,12 @@ class ValidationController
         }
     }
 
-    private static function checkTextFields()
+    public static function checkTextFields($view)
     {
         $textField = FormValidator::validateAllTextFields($_POST);
 
         if ($textField !== 1) {
-            return toViewWithError('register', "$textField is not valid", $_POST);
+            return toViewWithError($view, "$textField is not valid", $_POST);
         }
     }
 

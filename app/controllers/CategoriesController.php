@@ -8,7 +8,9 @@ class CategoriesController
 {
     public function add()
     {
-        
+        if (ValidationController::checkEmptyFields('profile/admin') || ValidationController::checkTextFields('profile/admin')) {
+            return;
+        }
         if ($this->checkIfCategoryExists()) {
             return toViewWithError('profile/admin', 'category already exists.');
         }
