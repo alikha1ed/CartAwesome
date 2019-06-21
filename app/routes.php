@@ -4,7 +4,7 @@ $router->get('', 'HomeController@index');
 
 $router->get('register', 'FormController@index');
 
-$router->post('add/user', 'FormController@handle');
+$router->post('register', 'FormController@handle');
 
 $router->get('login', 'AuthController@index');
 
@@ -14,4 +14,4 @@ $router->get('logout', 'AuthController@logout');
 
 $router->get('profile/admin', 'ProfileController@admin');
 
-$router->post('add/category', 'CategoriesController@add');
+$router->post('profile/admin', 'CategoriesController@add');

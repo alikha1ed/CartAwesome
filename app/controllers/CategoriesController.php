@@ -3,20 +3,21 @@
 namespace App\Controllers;
 
 use App\Core\App;
+use App\Core\Request;
 
 class CategoriesController
 {
     public function add()
     {
-        if (ValidationController::checkEmptyFields('profile/admin') || ValidationController::checkTextFields('profile/admin')) {
+        if (ValidationController::checkEmptyFields() || ValidationController::checkTextFields()) {
             return;
         }
         if ($this->checkIfCategoryExists()) {
-            return toViewWithError('profile/admin', 'category already exists.');
+            return toViewWithError(Request::uri(), 'category already exists');
         }
 
         if (App::get('database')->insert('category', ['name' => $_POST['name']])) {
-            return toViewWithSuccess('profile/admin', 'category added successfully.');
+            return toViewWithSuccess(Request::uri(), 'category added successfully');
         }
 
         return 0;
