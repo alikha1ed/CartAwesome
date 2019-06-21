@@ -43,6 +43,22 @@ class MySqlRepository
         }
     }
 
+    public function selectAll($table, $columns)
+    {
+        $sql = sprintf("SELECT %s from %s",
+        implode(', ', $columns),
+        $table
+        );
+
+        try {
+            $statement = $this->pdo->prepare($sql);
+            $statement->execute($columns);
+            return $statement->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            die(var_dump($e->getMessage()));
+        }
+
+    }
     public function getTheLastRows($table, $columns, $column, $rowsNumber)
     {
         $sql = sprintf(
