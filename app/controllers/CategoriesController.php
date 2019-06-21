@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Core\App;
 use App\Core\Request;
+use App\Models\Category;
 
 class CategoriesController
 {
@@ -13,11 +14,11 @@ class CategoriesController
             return;
         }
         if ($this->checkIfCategoryExists()) {
-            return toViewWithError(Request::uri(), 'category already exists');
+            return view(Request::uri(), (new Category)->getAllCategories(), 'category already exists');
         }
 
         if (App::get('database')->insert('category', ['name' => $_POST['name']])) {
-            return toViewWithSuccess(Request::uri(), 'category added successfully');
+            return redirect(Request::uri());
         }
 
         return 0;

@@ -1,8 +1,14 @@
 <?php 
 
-function view($name, $data = [])
+function view($name, $data = [], $error = null)
 {
-    extract($data);
+    if (! empty($data)) {
+        extract($data);
+    }
+    
+    if (! is_null($error)) {
+        $error = ucwords(preg_replace("/[^a-zA-Z]/", " ", $error));
+    }
 
     return require "app/views/{$name}.view.php";
 }
@@ -10,20 +16,6 @@ function view($name, $data = [])
 function redirect($path)
 {
     return header("Location: /{$path}");
-}
-
-function toViewWithError($view, $error, $data = [])
-{
-    return view($view, [
-        'error' => ucwords(preg_replace("/[^a-zA-Z]/", " ", $error)),
-    ]);
-}
-
-function toViewWithSuccess($view, $message, $data = [])
-{
-    return view($view, [
-        'message' => ucwords(preg_replace("/[^a-zA-Z]/", " ", $message)),
-    ]);
 }
 
 function dd($data)

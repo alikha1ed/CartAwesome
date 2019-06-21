@@ -14,7 +14,7 @@ class AuthController
     public function login()
     {
         if ($this->areFieldsFilled() && ! $this->arePasswordsMatched()) {
-            return toViewWithError('login', 'incorrect email or password');
+            return view('login', [], 'incorrect email or password');
         }
 
         session_start();
@@ -28,7 +28,7 @@ class AuthController
         session_start();
         session_destroy();
         
-        return view('index');
+        return redirect('');
     }
     private function areFieldsFilled()
     {

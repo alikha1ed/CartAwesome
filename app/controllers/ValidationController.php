@@ -20,7 +20,7 @@ class ValidationController
     public static function checkEmptyFields()
     {
         if (FormValidator::areAllFieldsEmpty($_POST)) {
-            return toViewWithError(Request::uri(), 'Please, fill all the fields.', $_POST);
+            return view(Request::uri(), 'Please, fill all the fields.');
         }
     }
 
@@ -29,35 +29,35 @@ class ValidationController
         $textField = FormValidator::validateAllTextFields($_POST);
 
         if ($textField !== 1) {
-            return toViewWithError(Request::uri(), "$textField is not valid", $_POST);
+            return view(Request::uri(), $_POST, "$textField is not valid");
         }
     }
 
     private static function checkEmail()
     {
         if (! FormValidator::validateEmail($_POST['email'])) {
-            return toViewWithError(Request::uri(), 'email is not valid', $_POST);
+            return view(Request::uri(), $_POST, 'email is not valid');
         }
     }
 
     private static function checkPhoneNumber()
     {
         if (! FormValidator::validatePhoneNumber($_POST['phone_number'], 11)) {
-            return toViewWithError(Request::uri(), 'phone number is not valid', $_POST);
+            return view(Request::uri(), $_POST, 'phone number is not valid');
         }
     }
     
     private static function checkPassword()
     {
         if (! FormValidator::validatePassword($_POST['password'])) {
-            return toViewWithError(Request::uri(), 'password is not valid', $_POST);
+            return view(Request::uri(), $_POST, 'password is not valid');
         }
     }
 
     private static function checkStreetNumber()
     {
         if (! FormValidator::validateStreetNumber($_POST['street_number'])) {
-            return toViewWithError(Request::uri(), 'street number is not valid', $_POST);
+            return view(Request::uri(), $_POST, 'street number is not valid');
         }
     }
 }

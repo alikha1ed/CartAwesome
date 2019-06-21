@@ -23,11 +23,11 @@ $index = 1;
 		</form>
 
 		<?php require 'app/views/layout/messages/errorMessage.php' ?>
-		<?php require 'app/views/layout/messages/successMessage.php' ?>
-
+		
 	</div>
 </div>
 
+<?php if ( !empty($data)) : ?>
 <div class="container">
 	<hr>
 	<br><h3>Categories</h3><br>
@@ -57,5 +57,7 @@ $index = 1;
 	</table>
 </div>
 <br><br>
-
+<?php else : ?>
+<br><h3>No Categories Added Yet.</h3><br><br>
+<?php endif; ?>
 <?php require 'app/views/layout/footer.php'; ?>

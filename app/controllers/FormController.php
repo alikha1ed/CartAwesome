@@ -25,9 +25,9 @@ class FormController
         $user = new User($_POST);
         
         if ($user->create()) {
-            return toViewWithSuccess('login', 'account created successfully');
+            return redirect('login');
         }
 
-        return toViewWithError('register', 'the email already exists');
+        return view('register', 'the email already exists');
     }
 }

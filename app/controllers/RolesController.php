@@ -30,6 +30,6 @@ class RolesController
     }
     public function admin()
     {
-        return view('/profile/admin');
+        return redirect('profile/admin');
     }
 }

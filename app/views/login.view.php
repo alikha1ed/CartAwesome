@@ -26,8 +26,7 @@ require 'layout/header.php';
 		</div>
 
 		<?php require 'layout/messages/errorMessage.php' ?>
-		<?php require 'layout/messages/successMessage.php' ?>
-		
+				
 	</div>
 </div>
 
