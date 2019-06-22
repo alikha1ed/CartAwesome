@@ -1,12 +1,10 @@
 <?php 
 
-function view($name, $data = [], $error = null)
+function view($name, $data = [])
 {
-    if (! empty($data)) {
-        extract($data);
-    }
-    
-    if (! is_null($error)) {
+    extract($data);
+
+    if(isset($error)) {
         $error = ucwords(preg_replace("/[^a-zA-Z]/", " ", $error));
     }
 

@@ -15,3 +15,7 @@ $router->get('logout', 'AuthController@logout');
 $router->get('profile/admin', 'ProfileController@admin');
 
 $router->post('profile/admin', 'CategoriesController@add');
+
+$router->post('edit/category', 'CategoriesController@edit');
+
+$router->post('save/category', 'CategoriesController@save');

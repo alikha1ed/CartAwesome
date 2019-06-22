@@ -6,8 +6,13 @@ use App\Core\App;
 
 class Category
 {
-    public function getAllCategories()
+    public static function getAllCategories()
     {
-        return App::get('database')->selectAll('category', ['name']);
+        return App::get('database')->selectAll('category', ['id', 'name']);
+    }
+
+    public static function update($newCategory)
+    {
+        return App::get('database')->update('category', $newCategory);
     }
 }

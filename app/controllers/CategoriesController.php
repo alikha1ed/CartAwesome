@@ -14,7 +14,11 @@ class CategoriesController
             return;
         }
         if ($this->checkIfCategoryExists()) {
-            return view(Request::uri(), (new Category)->getAllCategories(), 'category already exists');
+            return view(
+                Request::uri(),
+                ['categories' => Category::getAllCategories(), 
+                'error' => 'category already exists']
+            );
         }
 
         if (App::get('database')->insert('category', ['name' => $_POST['name']])) {
@@ -22,6 +26,23 @@ class CategoriesController
         }
 
         return 0;
+    }
+
+    public function edit()
+    {
+        return view('edit/category');
+    }
+
+    public function save()
+    {
+        if (empty($_POST['name'])) {
+            return view('edit/category', ['error' => 'please fill all the fields']);
+        }
+        if (! Category::update($_POST)) {
+            return view('edit/category', ['error' => 'this category already exists']);
+        }
+
+        return redirect('profile/admin');
     }
 
     private function checkIfCategoryExists()

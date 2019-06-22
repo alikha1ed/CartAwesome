@@ -24,7 +24,34 @@ class MySqlRepository
         }
     }
 
-    public function selectColumns($table, $columns, $column, $value)
+    public function update($table, $parameters)
+    {
+        $columnValue = end($parameters);
+
+        $column = (end(array_keys($parameters)));
+
+        array_pop($parameters);
+
+        $columns = array_map(function($field)
+        {
+            return $field .= "=:{$field}";
+        }, array_keys($parameters));
+
+        $sql = sprintf(
+            "UPDATE %s SET %s WHERE %s",
+            $table,
+            implode(', :' , $columns),
+            $column . "=:$column"
+        );
+        $parameters[$column] = $columnValue; 
+        try {
+            return $this->pdo->prepare($sql)->execute($parameters);
+        } catch (PDOException $e) {
+            return 0;
+        }
+    }
+
+    public function selectColumns($table, $columns, $column, $columnValue)
     {
         $sql = sprintf(
             "SELECT %s FROM %s WHERE %s = :%s",
@@ -36,7 +63,7 @@ class MySqlRepository
         
         try {
             $statement = $this->pdo->prepare($sql);
-            $statement->execute($value);
+            $statement->execute($columnValue);
             return $statement->fetch();
         } catch (PDOException $e) {
             die(var_dump($e->getMessage()));

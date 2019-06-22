@@ -1,9 +1,4 @@
-<?php 
-
-require 'app/views/layout/header.php';
-$index = 1;
-
-?>
+<?php require 'app/views/layout/header.php'; ?>
 
 <div class="register">
 	<div class="container">
@@ -23,11 +18,11 @@ $index = 1;
 		</form>
 
 		<?php require 'app/views/layout/messages/errorMessage.php' ?>
-		
+				
 	</div>
 </div>
 
-<?php if ( !empty($data)) : ?>
+<?php if ( !empty($categories)) : ?>
 <div class="container">
 	<hr>
 	<br><h3>Categories</h3><br>
@@ -41,14 +36,19 @@ $index = 1;
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach($data as $category) : ?>
+		<?php 
+			$index = 1;
+			foreach($categories as $category) :
+		?>
 		<tr>
 			<th scope="row"><?= $index++; ?></th>
 			<td><?= $category->name; ?></td>
-			<td><form action="edit/category" method="post">
-				<button type="submit" class="btn btn-success">Edit</button>
+			<td><form action="/edit/category" method="post">
+				<input type="text" value="<?= $category->name; ?>" name="name" hidden>
+				<input type="text" value="<?= $category->id; ?>" name="id" hidden>
+				<button type="submit" class="btn btn-success" name="edit_category" value="submit">Edit</button>
 			</form></td>
-			<td><form action="delete/category" method="post">
+			<td><form action="admin" method="post">
 				<button type="submit" class="btn btn-danger">Delete</button>
 			</form></td>
 		</tr>
@@ -57,7 +57,9 @@ $index = 1;
 	</table>
 </div>
 <br><br>
+
 <?php else : ?>
 <br><h3>No Categories Added Yet.</h3><br><br>
 <?php endif; ?>
+
 <?php require 'app/views/layout/footer.php'; ?>

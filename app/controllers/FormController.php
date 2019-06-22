@@ -28,6 +28,6 @@ class FormController
             return redirect('login');
         }
 
-        return view('register', 'the email already exists');
+        return view('register', ['error' => 'the email already exists']);
     }
 }
