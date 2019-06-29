@@ -1,0 +1,48 @@
+:root {
+    --color1: #a682ff;
+    --color2: #715aff;
+    --color3: #5887ff;
+    --color4: #55c1ff;
+    --color5: #102e4a;
+}
+
+.navbar {
+    display: block;
+}
+
+.collapse {
+    margin: 0 -16px;
+}
+
+#navbar {
+    background: var(--color5);
+    height: 50px;
+}
+
+a {
+    color: white;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+
+a:hover {
+    color: var(--color1);
+}
+
+.fade-in
+{
+    animation: fadeIn 3s;
+}
+
+@keyframes fadeIn
+{
+    from
+    {
+        opacity: 0;
+    }
+
+    to
+    {
+        opacity: 1;
+    }
+}
