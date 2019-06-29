@@ -26,7 +26,7 @@
         <?php if (isset($_SESSION['user'])): ?>
           <a class="nav-item nav-link" href="/profile/admin">Profile</a>
           <span class="text-white mt-2 mr-1 ml-1">|</span>
-          <a class="nav-item nav-link" href="/register">Logout</a>
+          <a class="nav-item nav-link" href="/login">Logout</a>
         <?php else: ?>
           <a class="nav-item nav-link" href="/register">Create Account</a>
           <span class="text-white mt-2 mr-1 ml-1">|</span>
