@@ -15,7 +15,7 @@
 }
 
 #navbar {
-    background: var(--color5);
+    background: #000;
     height: 50px;
 }
 
@@ -26,23 +26,53 @@ a {
 }
 
 a:hover {
-    color: var(--color1);
+    color: var(--color2);
 }
 
-.fade-in
-{
+.fade-in {
     animation: fadeIn 3s;
 }
 
-@keyframes fadeIn
-{
-    from
-    {
+@keyframes fadeIn {
+    from {
         opacity: 0;
     }
-
-    to
-    {
+    to {
         opacity: 1;
     }
+}
+
+.btn-info {
+    background-color: var(--color3);
+    border-color: var(--color3);
+}
+
+.btn-info:hover {
+    background-color: var(--color2);
+    border-color: var(--color2);
+}
+
+.carousel-inner {
+    max-height: 400px;
+}
+
+.carousel-item {
+    height: 400px;
+    background-size: cover;
+}
+
+#carousel-item-1 {
+    background-image: url('../images/carousel_image_1.jpg');
+}
+
+#carousel-item-2 {
+    background-image: url('../images/carousel_image_2.jpg');
+}
+
+#carousel-item-3 {
+    background-image: url('../images/carousel_image_3.jpg');
+}
+
+.carouselText {
+    margin-top: 2.5em;
 }

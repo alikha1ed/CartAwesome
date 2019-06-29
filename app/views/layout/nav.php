@@ -1,6 +1,6 @@
 <?php session_start();?>
 
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg mb-4">
   <div class="collapse navbar-collapse row d-flex justify-content-around pt-2 mb-4">
     <a class="navbar-brand" href="/">
       <img src="/public/images/logo.png" width="250" alt="">
