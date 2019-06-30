@@ -42,7 +42,7 @@ require 'layout/header.php'; ?>
 				</div>
 				<div class="form-group col-md-4">
 					<label>Street Number</label>
-					<input type="number" class="form-control" name="street_number" required
+					<input type="number" min="0" class="form-control" name="street_number" required
 					value ="<?= isset($formData['street_number']) ? htmlspecialchars($formData['street_number']) : '' ?>">
 				</div>
 				<div class="form-group col-md-8">
