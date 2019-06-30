@@ -29,7 +29,7 @@
           <a class="nav-item nav-link" href="/login">Logout</a>
         <?php else: ?>
           <a class="nav-item nav-link" href="/register">Create Account</a>
-          <span class="text-white mt-2 mr-1 ml-1">|</span>
+          <span class="my-auto mr-1 ml-1 vertical-line"></span>
           <a class="nav-item nav-link" href="/login">Login</a>
         <?php endif;?>
       </div>

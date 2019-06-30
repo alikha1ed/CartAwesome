@@ -76,3 +76,10 @@ a:hover {
 .carouselText {
     margin-top: 2.5em;
 }
+
+.vertical-line
+{
+    width: 0.5px;
+    height: 15px;
+    background: var(--color1);
+}
