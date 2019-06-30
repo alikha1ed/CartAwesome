@@ -11,5 +11,10 @@ class ProfileController
     {
         return view('profile/admin' ,['categories' => Category::getAllCategories()]);
     }
+
+    public function vendor()
+    {
+        return view('profile/vendor');
+    }
 }
 

@@ -19,3 +19,5 @@ $router->post('profile/admin', 'CategoriesController@add');
 $router->post('edit/category', 'CategoriesController@edit');
 
 $router->post('save/category', 'CategoriesController@save');
+
+$router->get('profile/vendor', 'ProfileController@vendor');

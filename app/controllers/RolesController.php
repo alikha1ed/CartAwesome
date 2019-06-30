@@ -27,4 +27,9 @@ class RolesController
     {
         return redirect('profile/admin');
     }
+
+    public function vendor()
+    {
+        return redirect('profile/vendor');
+    }
 }

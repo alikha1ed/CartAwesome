@@ -51,7 +51,7 @@ class Router
         $controller = new $controller;
         
         if (! method_exists($controller, $action)) {
-            throw new Exception("{$controller} has no {$action} action");
+            throw new Exception("This controller has no this action.");
         }
 
         return $controller->$action();

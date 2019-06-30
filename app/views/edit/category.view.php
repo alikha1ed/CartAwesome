@@ -11,6 +11,6 @@
     </form>    
 </div>
 
-<?php require 'app/views/layout/messages/errorMessage.php' ?>
+<?php require 'app/views/layout/errorMessage.php' ?>
 <br><br>
 <?php require 'app/views/layout/footer.php'; ?>

@@ -17,7 +17,7 @@
 				</div>
 		</form>
 
-		<?php require 'app/views/layout/messages/errorMessage.php' ?>
+		<?php require 'app/views/layout/errorMessage.php' ?>
 				
 	</div>
 </div>
@@ -48,7 +48,7 @@
 				<input type="text" value="<?= $category->id; ?>" name="id" hidden>
 				<button type="submit" class="btn btn-success" name="edit_category" value="submit">Edit</button>
 			</form></td>
-			<td><form action="admin" method="post">
+			<td><form action="/delete/category" method="post">
 				<button type="submit" class="btn btn-danger">Delete</button>
 			</form></td>
 		</tr>

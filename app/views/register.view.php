@@ -66,7 +66,7 @@ require 'layout/header.php'; ?>
 			<button type="submit" class="btn btn-primary">Register</button>
 		</form>
 
-		<?php require 'layout/messages/errorMessage.php' ?>
+		<?php require 'layout/errorMessage.php' ?>
 
 	</div>
 </div>

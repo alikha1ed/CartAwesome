@@ -83,3 +83,8 @@ a:hover {
     height: 15px;
     background: var(--color1);
 }
+
+.form-group
+{
+    margin-bottom: 0;
+}
