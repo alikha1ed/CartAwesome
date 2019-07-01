@@ -7,7 +7,7 @@ require 'layout/header.php'; ?>
 <div class="register">
 	<div class="container">
 		<h2>Create Account</h2>
-		<form id="register" action="/register" method="POST">
+		<form id="register" action="/add/user" method="POST">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label>First Name</label>
@@ -57,7 +57,7 @@ require 'layout/header.php'; ?>
 					<input type="text" class="form-control" name="area" required
 					value ="<?= isset($formData['area']) ? htmlspecialchars($formData['area']) : '' ?>">
 				</div>
-				<div class="form-group col-md-6">
+				<div class="form-group col-md-6 mb-3">
 					<label>City</label>
 					<input type="text" class="form-control" name="city" required
 					value ="<?= isset($formData['city']) ? htmlspecialchars($formData['city']) : '' ?>">

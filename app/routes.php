@@ -2,9 +2,9 @@
 
 $router->get('', 'HomeController@index');
 
-$router->get('register', 'FormController@index');
+$router->get('register', 'GuestController@register');
 
-$router->post('register', 'FormController@handle');
+$router->post('add/user', 'GuestController@addUser');
 
 $router->get('login', 'AuthController@index');
 
