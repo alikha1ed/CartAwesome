@@ -10,6 +10,6 @@
     </form>    
 </div>
 
-<?php require 'app/views/layout/errorMessage.php' ?>
+<?php require 'app/views/layout/error-message.php' ?>
 <br><br>
 <?php require 'app/views/layout/footer.php'; ?>

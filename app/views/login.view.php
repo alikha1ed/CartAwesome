@@ -25,7 +25,7 @@ require 'layout/header.php';
 			<p>New Account?<a href="/register">Register Here</a></p>
 		</div>
 
-		<?php require 'layout/errorMessage.php' ?>
+		<?php require 'layout/error-message.php' ?>
 				
 	</div>
 </div>
