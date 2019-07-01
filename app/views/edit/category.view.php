@@ -6,7 +6,6 @@
         <input type="text" value="<?= $_POST['name']; ?>" name="name">
         <input type="text" value="<?= $_POST['id']; ?>" name="id" hidden>
         <br><br>
-        <button type="submit" class="btn btn-primary"><a href="/profile/admin" style="color:white;">Back</a></button>
         <button type="submit" class="btn btn-primary">Save changes</button>
     </form>    
 </div>

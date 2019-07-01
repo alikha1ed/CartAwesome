@@ -5,24 +5,18 @@ $router->get('', 'HomeController@index');
 
 // Guest Controller
 $router->get('register', 'GuestController@register');
-
 $router->post('add/user', 'GuestController@addUser');
 
 // Auth Controller
 $router->get('login', 'AuthController@login');
-
 $router->post('login', 'AuthController@authenticate');
-
 $router->get('logout', 'AuthController@logout');
 
-// Profile Controller 
-$router->get('profile/admin', 'ProfileController@admin');
+// Admin Controller 
+$router->get('profile/admin', 'AdminController@index');
+$router->post('add/category', 'AdminController@addCategory');
+$router->post('edit/category', 'AdminController@editCategory');
+$router->post('save/category', 'AdminController@saveCategory');
 
-$router->get('profile/vendor', 'ProfileController@vendor');
-
-// Categories Controller
-$router->post('profile/admin', 'CategoriesController@add');
-
-$router->post('edit/category', 'CategoriesController@edit');
-
-$router->post('save/category', 'CategoriesController@save');
+// Vendor Controller 
+$router->get('profile/vendor', 'VendorController@index');

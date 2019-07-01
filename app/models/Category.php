@@ -6,7 +6,22 @@ use App\Core\App;
 
 class Category
 {
-    public static function getAllCategories()
+    public  static function create($name)
+    {
+        return App::get('database')->insert('category', ['name' => $name]);
+    }
+
+    public static function get($name)
+    {
+        return App::get('database')->selectColumns(
+            'category',
+            ['id'],
+            'name',
+            ['name' => $name]
+        );
+    }
+
+    public static function getAll()
     {
         return App::get('database')->selectAll('category', ['id', 'name']);
     }

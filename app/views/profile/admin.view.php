@@ -4,7 +4,7 @@
 	<div class="container">
     <h2>Admin Dashboard</h2>
     
-		<form id="register" action="/profile/admin" method="POST">
+		<form id="register" action="/add/category" method="POST">
 			<div class="form-row">
 				<div class="form-group col-md-12">
 					<hr>

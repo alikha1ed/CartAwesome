@@ -7,14 +7,10 @@ use App\Models\Category;
 
 class ProfileController
 {
-    public function admin()
-    {
-        return view('profile/admin' ,['categories' => Category::getAllCategories()]);
-    }
 
     public function vendor()
     {
-        return view('profile/vendor', ['categories' => Category::getAllCategories()]);
+        return view('profile/vendor', ['categories' => Category::getAll()]);
     }
 }
 
