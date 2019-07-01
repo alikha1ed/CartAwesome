@@ -49,7 +49,7 @@
 				<button type="submit" class="btn btn-success" name="edit_category" value="submit">Edit</button>
 			</form></td>
 			<td><form action="/delete/category" method="post">
-				<button type="submit" class="btn btn-danger">Delete</button>
+				<button type="submit" class="btn btn-info">Delete</button>
 			</form></td>
 		</tr>
 		<?php endforeach; ?>

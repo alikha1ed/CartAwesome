@@ -2,16 +2,17 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
 use App\Core\App;
 
 class AuthController
 {
-    public function index()
+    public function login()
     {
         return view('login');
     }
 
-    public function login()
+    public function authenticate()
     {
         if ($this->areFieldsFilled() && ! $this->arePasswordsMatched()) {
             return view('login', ['error' => 'incorrect email or password']);
@@ -19,20 +20,20 @@ class AuthController
 
         session_start();
         $_SESSION['user'] = $_POST;
+        $_SESSION['user']['id'] = $this->getUserData()['id'];
 
         return RolesController::goToUserProfile($this->getUserData()['role_fk']);
     }
     
     public function logout()
     {
-        session_start();
-        session_destroy();
-        
+        killSession();
+
         return redirect('');
     }
     private function areFieldsFilled()
     {
-        return ValidationController::checkEmptyFields('login') ? 0 : 1;
+        return ( new ValidationController('login') )->checkEmptyFields('login') ? 0 : 1;
     }
 
     private function arePasswordsMatched()
@@ -45,11 +46,6 @@ class AuthController
 
     private function getUserData()
     {
-        return App::get('database')->selectColumns(
-            'user',
-            ['password', 'role_fk'],
-            'email',
-            ['email' => $_POST['email']]
-        );
+        return (new User)->get($_POST['email']);
     }
 }
