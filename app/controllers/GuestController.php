@@ -13,9 +13,7 @@ class GuestController
 
     public function addUser()
     {
-        $validationController = new ValidationController('register');
-        
-        if ($validationController->validate()) {
+        if ( (new ValidationController('register') )->validate()) {
             return $this->createUser();
         }
 

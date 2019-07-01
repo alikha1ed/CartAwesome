@@ -8,7 +8,7 @@ class User
 {
     private $request;
 
-    public function __construct($request) {
+    public function __construct($request = []) {
         $this->request = $request;
     }
 
@@ -66,5 +66,15 @@ class User
         );
 
         return $userData;
+    }
+
+    public function get($email)
+    {
+        return App::get('database')->selectColumns(
+            'user',
+            ['id', 'password', 'role_fk'],
+            'email',
+            ['email' => $email]
+        );
     }
 }
