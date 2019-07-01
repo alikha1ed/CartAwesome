@@ -1,4 +1,4 @@
-<?php require 'app/views/layout/header.php';?>
+<?php require 'app/views/layout/header.php'; ?>
 
 <div class="container">
     <h2 class="mt-5 text-center">Vendor Dashboard</h2>
@@ -28,7 +28,16 @@
                 <label class="custom-file-label" for="customFile">Choose image</label>
             </div>
         </div>
-       
+        <div class="form-row justify-content-center">
+            <div class="form-group col-md-8 mb-4">
+                <label>Select Category</label>
+                <select class="form-control" name="category">
+                    <?php foreach ($categories as $category) : ?>
+                        <option value="<?= $category->id; ?>"><?= $category->name; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
         <div class="mx-auto" style="width: 200px;">
             <button type="submit" class="btn btn-primary">Add Product</button>
         </div>

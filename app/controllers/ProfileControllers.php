@@ -14,7 +14,7 @@ class ProfileController
 
     public function vendor()
     {
-        return view('profile/vendor');
+        return view('profile/vendor', ['categories' => Category::getAllCategories()]);
     }
 }
 
