@@ -2,15 +2,12 @@
 
 namespace App\Controllers;
 
-use App\Core\App;
 use App\Models\Category;
 
-class ProfileController
+class VendorController
 {
-
-    public function vendor()
+    public function index()
     {
         return view('profile/vendor', ['categories' => Category::getAll()]);
     }
 }
-
