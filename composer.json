@@ -3,5 +3,8 @@
         "classmap": [
             "./"
         ]
+    },
+    "require": {
+        "symfony/http-foundation": "^4.3"
     }
 }

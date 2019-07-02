@@ -1,7 +1,9 @@
 <?php 
 
 namespace App\Core;
+
 use Exception;
+use Symfony\Component\HttpFoundation\Request;
 
 class Router
 {
@@ -33,22 +35,22 @@ class Router
     }
 
     // Checks if the controller and its action exist
-    public function direct($uri, $requestType)
+    public function direct(Request $request, $uri, $requestType)
     {
         // Checks if the uri is registered in the GET or POST URIs
         if (array_key_exists($uri, $this->routes[$requestType]))
         {
             // Example: callAction('PagesController', 'index')
-            return $this->callAction(...explode('@', $this->routes[$requestType][$uri]));
+            return $this->callAction($request, ...explode('@', $this->routes[$requestType][$uri]));
         }
         throw new Exception("Whoopps, no route found for {$uri} URI");
     }
 
     // Execute controller method
-    private function callAction($controller, $action)
+    private function callAction(Request $request, $controller, $action)
     {
         $controller = "App\Controllers\\{$controller}";
-        $controller = new $controller;
+        $controller = new $controller($request);
         
         if (! method_exists($controller, $action)) {
             throw new Exception("This controller has no this action.");

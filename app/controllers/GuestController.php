@@ -2,9 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Models\FormProcessing\FormValidator;
 use App\Models\User;
 
-class GuestController
+class GuestController extends Controller
 {
     public function register()
     {
@@ -13,16 +14,16 @@ class GuestController
 
     public function addUser()
     {
-        if ( (new ValidationController('register') )->validate()) {
+        if ( (new ValidationController($this->request, (new FormValidator($this->request->request)), 'register') )->validate()) {
             return $this->createUser();
         }
-
+        
         return 0;
     }
 
     private function createUser()
     {        
-        if ( (new User($_POST) )->create()) {
+        if ( (new User($this->request->request) )->create()) {
             return redirect('login');
         }
 

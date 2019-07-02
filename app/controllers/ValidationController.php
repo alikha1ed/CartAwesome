@@ -3,40 +3,45 @@
 namespace App\Controllers;
 
 use App\Models\FormProcessing\FormValidator;
-use App\Core\Request;
+use Symfony\Component\HttpFoundation\Request;
 
-class ValidationController
+class ValidationController extends Controller
 {
+    private $formValidator;
     private $view;
 
-    public function __construct($view) {
+    public function __construct(Request $request, FormValidator $formValidator, $view) {
+        $this->request = $request;
+        $this->formValidator = $formValidator;
         $this->view = $view;
     }
     
     public function validate()
     {
         // Clean request data from white spaces at the edges
-        $_POST = array_map('trim', $_POST);
+        $this->request->request = array_map('trim', $this->request->request->all());
 
-        return (self::checkEmptyFields() || self::checkTextFields() ||
-            self::checkEmail() || self::checkPhoneNumber() ||
-            self::checkPassword() || self::checkStreetNumber()) ? 0 : 1;
+        return(
+                $this->checkEmptyFields() || $this->checkTextFields() ||
+                $this->checkEmail() || $this->checkPhoneNumber() ||
+                $this->checkPassword() || $this->checkStreetNumber()
+        )   ? 0 : 1;
     }
 
     public function checkEmptyFields()
     {
-        if (FormValidator::areAllFieldsEmpty($_POST)) {
+        if ($this->formValidator->areAllFieldsEmpty()) {
             return view($this->view, ['error' => 'Please, fill all the fields.']);
         }
     }
 
     public function checkTextFields()
     {
-        $textField = FormValidator::validateAllTextFields($_POST);
+        $textField = $this->formValidator->validateAllTextFields();
 
         if ($textField !== 1) {
             return view($this->view, [
-                'formData' => $_POST, 
+                'formData' => $this->request->request, 
                 'error' => "$textField is not valid"
             ]);
         }
@@ -44,9 +49,9 @@ class ValidationController
 
     private function checkEmail()
     {
-        if (! FormValidator::validateEmail($_POST['email'])) {
+        if (! $this->formValidator->validateEmail()) {
             return view($this->view, [
-                'formData' => $_POST,
+                'formData' => $this->request->request,
                 'error' => 'email is not valid'
             ]);
         }
@@ -54,9 +59,9 @@ class ValidationController
 
     private function checkPhoneNumber()
     {
-        if (! FormValidator::validatePhoneNumber($_POST['phone_number'], 11)) {
+        if (! $this->formValidator->validatePhoneNumber(11)) {
             return view($this->view, [
-                'formData' => $_POST,
+                'formData' => $this->request->request,
                 'error' => 'phone number is not valid'
             ]);
         }
@@ -64,9 +69,9 @@ class ValidationController
     
     private function checkPassword()
     {
-        if (! FormValidator::validatePassword($_POST['password'])) {
+        if (! $this->formValidator->validatePassword()) {
             return view($this->view, [
-                'formData' => $_POST,
+                'formData' => $this->request->request,
                 'error' => 'password is not valid'
             ]);
         }
@@ -74,9 +79,9 @@ class ValidationController
 
     private function checkStreetNumber()
     {
-        if (! FormValidator::validateStreetNumber($_POST['street_number'])) {
+        if (! $this->formValidator->validateStreetNumber()) {
             return view($this->view, [
-                'formData' => $_POST,
+                'formData' => $this->request->request,
                 'error' => 'street number is not valid'
             ]);
         }
