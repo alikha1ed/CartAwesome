@@ -38,9 +38,7 @@ class FormValidator
     private static function isTextFieldValid($field)
     {
         return (
-            preg_match('/[\'^£$%&*()}{!@#~?><>,|=_+¬-]/', $field) ||
-            preg_match("/\\d/", $field) > 0
-        ) ? 0 : 1;            
+            preg_match('/[\'^£$%&*()}{!@#~?><>,|=_+¬-]/', $field)) ? 0 : 1;            
     }
 
     public static function validateEmail($email)
