@@ -1,11 +1,14 @@
 <?php 
 
-use App\Core\{Router, Request};
+use App\Core\Router;
+use Symfony\Component\HttpFoundation\Request;
 
 require 'core/helpers.php';
 require 'vendor/autoload.php';
 require 'core/bootstrap.php';
 
+$request = Request::createFromGlobals();
+
 $router = Router::load('app/routes.php');
 
-$router->direct(Request::uri(), Request::method());
+$router->direct($request, trim($request->getPathInfo(), '/'), $request->getMethod());
