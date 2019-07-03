@@ -3,9 +3,7 @@
 use App\Core\Router;
 use Symfony\Component\HttpFoundation\Request;
 
-require 'core/helpers.php';
 require 'vendor/autoload.php';
-require 'core/bootstrap.php';
 
 $request = Request::createFromGlobals();
 
