@@ -3,9 +3,9 @@
 namespace App\Controllers;
 
 use App\Models\User;
-use App\Core\App;
+use App\Models\FormProcessing\FormValidator;
 
-class AuthController
+class AuthController extends Controller
 {
     public function login()
     {
@@ -18,9 +18,13 @@ class AuthController
             return view('login', ['error' => 'incorrect email or password']);
         }
 
+        $this->request->request->add([
+            'id' => $this->getUserData()['id']
+        ]);
+        
         session_start();
-        $_SESSION['user'] = $_POST;
-        $_SESSION['user']['id'] = $this->getUserData()['id'];
+
+        $_SESSION['user'] = $this->request->request;
 
         return RolesController::goToUserProfile($this->getUserData()['role_fk']);
     }
@@ -33,19 +37,19 @@ class AuthController
     }
     private function areFieldsFilled()
     {
-        return ( new ValidationController('login') )->checkEmptyFields('login') ? 0 : 1;
+        return ( new ValidationController($this->request, (new FormValidator($this->request->request)), 'login'))->checkEmptyFields('login') ? 0 : 1;
     }
 
     private function arePasswordsMatched()
     {
         return (
             ! is_null($this->getUserData()['password']) &&
-            password_verify($_POST['password'], $this->getUserData()['password'])
+            password_verify($this->request->request->get('password'), $this->getUserData()['password'])
         ) ? 1 : 0;
     }
-
+    
     private function getUserData()
     {
-        return (new User)->get($_POST['email']);
+        return (new User)->get($this->request->request->get('email'));
     }
 }

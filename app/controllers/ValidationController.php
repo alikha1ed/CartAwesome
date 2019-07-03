@@ -11,6 +11,7 @@ class ValidationController extends Controller
     private $view;
 
     public function __construct(Request $request, FormValidator $formValidator, $view) {
+
         $this->request = $request;
         $this->formValidator = $formValidator;
         $this->view = $view;
@@ -38,7 +39,7 @@ class ValidationController extends Controller
     public function checkTextFields()
     {
         $textField = $this->formValidator->validateAllTextFields();
-
+        
         if ($textField !== 1) {
             return view($this->view, [
                 'formData' => $this->request->request, 
@@ -51,7 +52,7 @@ class ValidationController extends Controller
     {
         if (! $this->formValidator->validateEmail()) {
             return view($this->view, [
-                'formData' => $this->request->request,
+                'formData' => $this->request->request->all(),
                 'error' => 'email is not valid'
             ]);
         }
@@ -61,7 +62,7 @@ class ValidationController extends Controller
     {
         if (! $this->formValidator->validatePhoneNumber(11)) {
             return view($this->view, [
-                'formData' => $this->request->request,
+                'formData' => $this->request->request->all(),
                 'error' => 'phone number is not valid'
             ]);
         }
@@ -71,7 +72,7 @@ class ValidationController extends Controller
     {
         if (! $this->formValidator->validatePassword()) {
             return view($this->view, [
-                'formData' => $this->request->request,
+                'formData' => $this->request->request->all(),
                 'error' => 'password is not valid'
             ]);
         }
@@ -81,7 +82,7 @@ class ValidationController extends Controller
     {
         if (! $this->formValidator->validateStreetNumber()) {
             return view($this->view, [
-                'formData' => $this->request->request,
+                'formData' => $this->request->request->all(),
                 'error' => 'street number is not valid'
             ]);
         }
