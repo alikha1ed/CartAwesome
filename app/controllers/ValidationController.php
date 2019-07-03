@@ -21,7 +21,7 @@ class ValidationController extends Controller
     {
         // Clean request data from white spaces at the edges
         $this->request->request = array_map('trim', $this->request->request->all());
-
+        
         return(
                 $this->checkEmptyFields() || $this->checkTextFields() ||
                 $this->checkEmail() || $this->checkPhoneNumber() ||
@@ -52,7 +52,7 @@ class ValidationController extends Controller
     {
         if (! $this->formValidator->validateEmail()) {
             return view($this->view, [
-                'formData' => $this->request->request->all(),
+                'formData' => $this->request->request,
                 'error' => 'email is not valid'
             ]);
         }
@@ -62,7 +62,7 @@ class ValidationController extends Controller
     {
         if (! $this->formValidator->validatePhoneNumber(11)) {
             return view($this->view, [
-                'formData' => $this->request->request->all(),
+                'formData' => $this->request->request,
                 'error' => 'phone number is not valid'
             ]);
         }
@@ -72,7 +72,7 @@ class ValidationController extends Controller
     {
         if (! $this->formValidator->validatePassword()) {
             return view($this->view, [
-                'formData' => $this->request->request->all(),
+                'formData' => $this->request->request,
                 'error' => 'password is not valid'
             ]);
         }
@@ -82,7 +82,7 @@ class ValidationController extends Controller
     {
         if (! $this->formValidator->validateStreetNumber()) {
             return view($this->view, [
-                'formData' => $this->request->request->all(),
+                'formData' => $this->request->request,
                 'error' => 'street number is not valid'
             ]);
         }
