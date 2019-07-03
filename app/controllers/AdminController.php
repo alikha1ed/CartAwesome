@@ -3,9 +3,9 @@
 namespace App\Controllers;
 
 use App\Models\Category;
-use App\Core\Request;
+use App\Models\FormProcessing\FormValidator;
 
-class AdminController
+class AdminController extends Controller
 {
     public function index()
     {
@@ -14,19 +14,18 @@ class AdminController
 
     public function addCategory()
     {
-        $validationController = new ValidationController('profile/admin');
+        $validationController = new ValidationController($this->request, (new FormValidator($this->request->request)), 'profile/admin');
         if ($validationController->checkEmptyFields() || $validationController->checkTextFields()) {
             return;
         }
         if ($this->checkIfCategoryExists()) {
             return view(
                 'profile/admin',
-                ['categories' => Category::getAll(),
-                    'error' => 'category already exists']
+                ['categories' => Category::getAll(), 'error' => 'category already exists']
             );
         }
 
-        if (Category::create($_POST['name'])) {
+        if (Category::create($this->request->request->get('name'))) {
             return redirect('profile/admin');
         }
 
@@ -40,10 +39,10 @@ class AdminController
 
     public function saveCategory()
     {
-        if (empty($_POST['name'])) {
+        if (empty($this->request->request->get('name'))) {
             return view('edit/category', ['error' => 'please fill all the fields']);
         }
-        if (!Category::update($_POST)) {
+        if (!Category::update($this->request->request->all())) {
             return view('edit/category', ['error' => 'this category already exists']);
         }
 
@@ -52,6 +51,6 @@ class AdminController
 
     private function checkIfCategoryExists()
     {
-        return Category::get($_POST['name']);
+        return Category::get($this->request->request->get('name'));
     }
 }
