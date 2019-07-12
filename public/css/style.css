@@ -6,6 +6,10 @@
     --color5: #102e4a;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .navbar {
     display: block;
 }
@@ -52,12 +56,10 @@ a:hover {
     border-color: var(--color2);
 }
 
-.carousel-inner {
-    max-height: 400px;
-}
+
 
 .carousel-item {
-    height: 400px;
+    height: 75vh;
     background-size: cover;
 }
 
@@ -74,17 +76,15 @@ a:hover {
 }
 
 .carouselText {
-    margin-top: 2.5em;
+    margin-top: 3.5em;
 }
 
-.vertical-line
-{
+.vertical-line {
     width: 0.5px;
     height: 15px;
     background: var(--color1);
 }
 
-.form-group
-{
+.form-group {
     margin-bottom: 0;
 }
