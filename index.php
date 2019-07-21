@@ -1,11 +1,11 @@
 <?php 
 
 use App\Core\Router;
-use Symfony\Component\HttpFoundation\Request;
+use App\Core\RequestHandler;
 
 require 'vendor/autoload.php';
 
-$request = Request::createFromGlobals();
+$request = (new RequestHandler())->getRequest();
 
 $router = Router::load('app/routes.php');
 

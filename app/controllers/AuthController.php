@@ -21,20 +21,21 @@ class AuthController extends Controller
         $this->request->request->add([
             'id' => $this->getUserData()['id']
         ]);
+
+        $this->request->getSession()->set('user', $this->request->request->all());
         
-        session_start();
-
-        $_SESSION['user'] = $this->request->request;
-
-        return RolesController::goToUserProfile($this->getUserData()['role_fk']);
+        return (new RolesController($this->request))
+            ->goToUserProfile(
+                $this->getUserData()['role_fk']
+            );
     }
     
     public function logout()
     {
-        killSession();
-
+        $this->request->getSession()->remove('user');
         return redirect('');
     }
+
     private function areFieldsFilled()
     {
         return ( new ValidationController($this->request, (new FormValidator($this->request->request)), 'login'))->checkEmptyFields('login') ? 0 : 1;

@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php require 'user.php' ?>
 
 <nav class="navbar navbar-expand-lg mb-4">
   <div class="collapse navbar-collapse row d-flex justify-content-around pt-2 mb-4">
@@ -23,10 +23,10 @@
         </li>
       </ul>
       <div class="navbar-nav mb-2">
-        <?php if (isset($_SESSION['user'])): ?>
+        <?php if (isset($user)): ?>
           <a class="nav-item nav-link" href="/profile/admin">Profile</a>
           <span class="text-white mt-2 mr-1 ml-1">|</span>
-          <a class="nav-item nav-link" href="/login">Logout</a>
+          <a class="nav-item nav-link" href="/logout">Logout</a>
         <?php else: ?>
           <a class="nav-item nav-link" href="/register">Create Account</a>
           <span class="my-auto mr-1 ml-1 vertical-line"></span>

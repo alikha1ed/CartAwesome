@@ -2,22 +2,22 @@
 
 namespace App\Controllers;
 
-class RolesController
+class RolesController extends Controller
 {
-    public static function goToUserProfile($role_id)
+    public function goToUserProfile($role_id)
     {
         switch ($role_id) {
             case '1':
-                return self::customer();
+                return $this->customer();
 
             case '2':
-                return self::vendor();
+                return $this->vendor();
 
             case '3':
-                return self::admin();
+                return $this->admin();
 
             case '4':
-                return self::root();
+                return $this->root();
 
             default:
                 die('Whoops, Something wrong happened.');

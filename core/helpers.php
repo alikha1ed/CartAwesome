@@ -21,10 +21,17 @@ function dd($data)
     die(var_dump($data));
 }
 
-function killSession()
+function sessionHas($name)
 {
-    session_start();
-    session_destroy();
-    
-    return;
+    return array_key_exists($name, $_SESSION);
+}
+
+function sessionGet($name, $default = null)
+{
+    if (sessionHas($name))
+    {
+        return $_SESSION[$name];
+    }
+
+    return $default;
 }

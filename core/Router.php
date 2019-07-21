@@ -23,18 +23,14 @@ class Router
     }
 
     // Delegate the GET request to a controller
-    public function get($uri, $controller, $anonymousFunction = null)
+    public function get($uri, $controller)
     {
         $this->routes['GET'][$uri] = $controller;
-
-        $this->executeAnonymousFunction();
     }
 
     // Delegate the POST request to a controller
-    public function post($uri, $controller, $anonymousFunction = null)
+    public function post($uri, $controller)
     {
-        $this->executeAnonymousFunction();
-
         $this->routes['POST'][$uri] = $controller;        
     }
 
@@ -61,11 +57,5 @@ class Router
         }
 
         return $controller->$action();
-    }
-
-    private function executeAnonymousFunction($anonymousFunction = null)
-    {
-        if (!is_null($anonymousFunction))
-            $anonymousFunction();
     }
 }
